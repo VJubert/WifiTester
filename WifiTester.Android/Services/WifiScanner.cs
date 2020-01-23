@@ -9,14 +9,14 @@ using Android.Net;
 using Android.Net.Wifi;
 using Android.Runtime;
 using Android.Support.V4.App;
-using Android.Support.V4.Content;
 using Plugin.CurrentActivity;
 using WifiTester.Services;
-using Xamarin.Essentials;
 using static WifiTester.Droid.Services.PermissionHelper;
 
 namespace WifiTester.Droid.Services
 {
+    // From : https://developer.android.com/guide/topics/connectivity/wifi-scan
+
     public class WifiScanner : IWifiScanner
     {
         public WifiScanner()
