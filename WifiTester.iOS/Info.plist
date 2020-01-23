@@ -36,7 +36,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>processing</string>
+		<string>network-authentication</string>
 	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
