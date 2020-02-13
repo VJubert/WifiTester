@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreFoundation;
+using CoreLocation;
 using NetworkExtension;
+using SystemConfiguration;
 using WifiTester.Services;
+using Xamarin.Essentials;
 
 namespace WifiTester.iOS.Services
 {
@@ -36,6 +39,38 @@ namespace WifiTester.iOS.Services
             Console.WriteLine($"Return {res}");
 
             return Task.FromResult((List<WifiInformation>)null);
+        }
+
+        public async Task ShowCurrentWifiInformation()
+        {
+            await Geolocation.GetLocationAsync();
+
+            //return null pour des simulateurs
+            var result = CaptiveNetwork.TryGetSupportedInterfaces(out var supportedInterfaces);
+
+            if(result == StatusCode.OK && supportedInterfaces != null)
+            {
+                foreach (var r in supportedInterfaces)
+                {
+                    Console.WriteLine(r);
+
+                    var netResult = CaptiveNetwork.TryCopyCurrentNetworkInfo(r, out var networkInfo);
+                    if(netResult == StatusCode.OK && networkInfo!=null)
+                    {
+                        foreach(var kvp in networkInfo)
+                        {
+                            Console.WriteLine($"{kvp.Key} {kvp.Value}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(netResult);
+                    }
+                }
+            } else
+            {
+                Console.WriteLine(result);
+            }
         }
     }
 }

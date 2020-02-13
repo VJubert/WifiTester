@@ -15,15 +15,18 @@ namespace WifiTester
             InitializeComponent();
         }
 
-       async void Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Button_Clicked(object sender, EventArgs e)
         {
             var scanner = DependencyService.Resolve<IWifiScanner>();
-            var results = await scanner.ScanForWifi();
+
+            await scanner.ShowCurrentWifiInformation();
+
+            //var results = await scanner.ScanForWifi();
 
             //foreach(var res in results)
             //{
             //    Console.WriteLine(res);
             //}
-       }
+        }
     }
 }

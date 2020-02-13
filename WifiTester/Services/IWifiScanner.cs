@@ -14,5 +14,6 @@ namespace WifiTester.Services
     public interface IWifiScanner
     {
         Task<List<WifiInformation>> ScanForWifi();
+        Task ShowCurrentWifiInformation();
     }
 }

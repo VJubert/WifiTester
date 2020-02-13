@@ -56,6 +56,11 @@ namespace WifiTester.Droid.Services
             return await tcs.Task;
         }
 
+        public Task ShowCurrentWifiInformation()
+        {
+            throw new NotImplementedException();
+        }
+
         public class WifiReceiver : BroadcastReceiver
         {
             private TaskCompletionSource<List<WifiInformation>> _tcs;
